@@ -4,5 +4,7 @@ streamlit
 numpy
 Pillow
 flask
+flask-cors
 tensorflow==2.10.0
 keras==2.10.0
+gunicorn
