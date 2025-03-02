@@ -3,6 +3,8 @@ from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import os
+from waitress import serve
 
 
 model = load_model('./models/FV.h5')
@@ -65,9 +67,8 @@ def infer_image():
     return jsonify(prediction=result, fodmap=fodmap_value)
 
 
-if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=10000)
+PORT = int(os.environ.get("PORT", 10000))  # ใช้ PORT จาก Render
+serve(app, host="0.0.0.0", port=PORT)
 
 
 
